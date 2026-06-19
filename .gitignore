@@ -1,0 +1,31 @@
+﻿# Credentials GCP — JAMAIS committer
+secrets/
+*.json.key
+sa-*.json
+
+# Environnement Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Variables d'environnement
+.env
+
+# Jupyter / Fabric Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Data locale
+data/seeds/output/
+data/raw/
+data/processed/
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
