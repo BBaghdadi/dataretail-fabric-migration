@@ -1,0 +1,90 @@
+2026-06-25 21:28:22 [INFO    ] bronze.customers - =======================================================
+2026-06-25 21:28:22 [INFO    ] bronze.customers - Démarrage ingestion Bronze — CUSTOMERS
+2026-06-25 21:28:22 [INFO    ] bronze.customers - Run ID : 20260625_212822
+2026-06-25 21:28:22 [INFO    ] bronze.customers - =======================================================
+2026-06-25 21:28:22 [INFO    ] bronze.customers - Étape 1 — Lecture depuis GCS...
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ✓ Fichier lu : gs://dataretail-migration-source/raw/customers/customers.csv
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ✓ Dimensions : 5,050 lignes × 15 colonnes
+2026-06-25 21:28:24 [INFO    ] bronze.customers - Étape 2 — Validation basique Bronze...
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ✓ Colonnes requises : OK (5 vérifiées)
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ✓ Volume : 5,050 lignes (minimum 1,000)
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ✓ Lignes valides    : 5,050
+2026-06-25 21:28:24 [INFO    ] bronze.customers -   ⚠ Lignes quarantaine: 0
+2026-06-25 21:28:24 [INFO    ] bronze.customers - Etape 3 - Ajout metadonnees Bronze...
+2026-06-25 21:28:25 [INFO    ] bronze.customers -   [OK] Metadonnees ajoutees : 20 colonnes
+2026-06-25 21:28:25 [INFO    ] bronze.customers - Etape 4 - Sauvegarde locale...
+2026-06-25 21:28:25 [INFO    ] bronze.customers -   [OK] Local : data\bronze\bronze_customers.parquet (0.78 MB)
+2026-06-25 21:28:25 [INFO    ] bronze.customers - Etape 5 - Ecriture sur Microsoft Fabric OneLake...
+2026-06-25 21:28:56 [ERROR   ] bronze.customers -   [ERR] Ecriture OneLake echouee : (FriendlyNameSupportDisabled) Request Failed with WorkspaceId and ArtifactId should be either valid Guids or valid Names
+Code: FriendlyNameSupportDisabled
+Message: Request Failed with WorkspaceId and ArtifactId should be either valid Guids or valid Names
+2026-06-25 21:28:56 [ERROR   ] bronze.customers - Traceback (most recent call last):
+  File "D:\work\training\dataretail-fabric-migration\src\bronze\nb_bronze_customers.py", line 237, in save_bronze
+    path = client.write_parquet(
+        df           = df,
+    ...<3 lines>...
+        filename     = f"bronze_customers_{RUN_ID}.parquet",
+    )
+  File "D:\work\training\dataretail-fabric-migration\src\shared\onelake_client.py", line 80, in write_parquet
+    file_client.upload_data(data, overwrite=True, length=len(data))
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\work\training\dataretail-fabric-migration\.venv\Lib\site-packages\azure\core\tracing\decorator.py", line 119, in wrapper_use_tracer
+    return func(*args, **kwargs)
+  File "D:\work\training\dataretail-fabric-migration\.venv\Lib\site-packages\azure\storage\filedatalake\_data_lake_file_client.py", line 480, in upload_data
+    return upload_datalake_file(**options)
+  File "D:\work\training\dataretail-fabric-migration\.venv\Lib\site-packages\azure\storage\filedatalake\_upload_helper.py", line 124, in upload_datalake_file
+    process_storage_error(error)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\work\training\dataretail-fabric-migration\.venv\Lib\site-packages\azure\storage\filedatalake\_deserialize.py", line 259, in process_storage_error
+    exec("raise error from None")   # pylint: disable=exec-used # nosec
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+azure.core.exceptions.HttpResponseError: (FriendlyNameSupportDisabled) Request Failed with WorkspaceId and ArtifactId should be either valid Guids or valid Names
+Code: FriendlyNameSupportDisabled
+Message: Request Failed with WorkspaceId and ArtifactId should be either valid Guids or valid Names
+
+2026-06-25 21:28:56 [WARNING ] bronze.customers -   Donnees sauvegardees en local uniquement
+2026-06-25 21:28:56 [INFO    ] bronze.customers - =======================================================
+2026-06-25 21:28:56 [INFO    ] bronze.customers - RAPPORT D'INGESTION BRONZE — CUSTOMERS
+2026-06-25 21:28:56 [INFO    ] bronze.customers - =======================================================
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Run ID          : 20260625_212822
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Timestamp       : 2026-06-25T19:28:22.786920+00:00
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Source          : gs://dataretail-migration-source/raw/customers/customers.csv
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Lignes lues     : 5,050
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Lignes valides  : 5,050
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Quarantaine     : 0
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Colonnes Bronze : 20
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Taux succès     : 100.0%
+2026-06-25 21:28:56 [INFO    ] bronze.customers - =======================================================
+2026-06-25 21:28:56 [INFO    ] bronze.customers - Ingestion Bronze CUSTOMERS terminée ✓
+2026-06-25 22:35:55 [INFO    ] bronze.customers - =======================================================
+2026-06-25 22:35:55 [INFO    ] bronze.customers - Démarrage ingestion Bronze — CUSTOMERS
+2026-06-25 22:35:55 [INFO    ] bronze.customers - Run ID : 20260625_223555
+2026-06-25 22:35:55 [INFO    ] bronze.customers - =======================================================
+2026-06-25 22:35:55 [INFO    ] bronze.customers - Étape 1 — Lecture depuis GCS...
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ✓ Fichier lu : gs://dataretail-migration-source/raw/customers/customers.csv
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ✓ Dimensions : 5,050 lignes × 15 colonnes
+2026-06-25 22:35:57 [INFO    ] bronze.customers - Étape 2 — Validation basique Bronze...
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ✓ Colonnes requises : OK (5 vérifiées)
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ✓ Volume : 5,050 lignes (minimum 1,000)
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ✓ Lignes valides    : 5,050
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   ⚠ Lignes quarantaine: 0
+2026-06-25 22:35:57 [INFO    ] bronze.customers - Etape 3 - Ajout metadonnees Bronze...
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   [OK] Metadonnees ajoutees : 20 colonnes
+2026-06-25 22:35:57 [INFO    ] bronze.customers - Etape 4 - Sauvegarde locale...
+2026-06-25 22:35:57 [INFO    ] bronze.customers -   [OK] Local : data\bronze\bronze_customers.parquet (0.78 MB)
+2026-06-25 22:35:57 [INFO    ] bronze.customers - Etape 5 - Ecriture sur Microsoft Fabric OneLake...
+2026-06-25 22:36:17 [INFO    ] bronze.customers -   [OK] OneLake : onelake://DataRetail-DEV/LH_Bronze.Lakehouse/Files/customers/bronze_customers_20260625_223555.parquet
+2026-06-25 22:36:17 [INFO    ] bronze.customers - =======================================================
+2026-06-25 22:36:17 [INFO    ] bronze.customers - RAPPORT D'INGESTION BRONZE — CUSTOMERS
+2026-06-25 22:36:17 [INFO    ] bronze.customers - =======================================================
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Run ID          : 20260625_223555
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Timestamp       : 2026-06-25T20:35:55.170601+00:00
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Source          : gs://dataretail-migration-source/raw/customers/customers.csv
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Lignes lues     : 5,050
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Lignes valides  : 5,050
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Quarantaine     : 0
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Colonnes Bronze : 20
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Taux succès     : 100.0%
+2026-06-25 22:36:17 [INFO    ] bronze.customers - =======================================================
+2026-06-25 22:36:17 [INFO    ] bronze.customers - Ingestion Bronze CUSTOMERS terminée ✓

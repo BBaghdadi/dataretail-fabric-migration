@@ -7,3 +7,7 @@ python-dotenv==1.0.1
 loguru==0.7.2
 google-cloud-storage==2.14.0
 pytest==8.0.0
+
+# Azure / Fabric
+azure-storage-file-datalake==12.14.0
+azure-identity==1.19.0
